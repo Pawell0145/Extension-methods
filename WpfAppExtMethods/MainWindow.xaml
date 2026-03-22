@@ -1,0 +1,35 @@
+﻿<Window x:Class="ExtensionMethodsTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="String Manipulator Tester" Height="350" Width="500" MinHeight="250" MinWidth="400">
+    <!-- Use Grid layout for responsiveness -->
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Input Label -->
+            <RowDefinition Height="*"/>
+            <!-- Input TextBox (flexes) -->
+            <RowDefinition Height="Auto"/>
+            <!-- Buttons Panel -->
+            <RowDefinition Height="Auto"/>
+            <!-- Output Label -->
+            <RowDefinition Height="*"/>
+            <!-- Output TextBox (flexes) -->
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Enter your text:" FontWeight="Bold" Margin="0,0,0,5" />
+        <TextBox x:Name="InputTextBox" Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10" />
+
+        <!-- WrapPanel allows buttons to flow to the next line if window is too small -->
+        <WrapPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Button Content="Capitalize Alternating" Click="BtnCapitalize_Click" Padding="10,5" Margin="5"/>
+            <Button Content="Remove Vowels" Click="BtnRemoveVowels_Click" Padding="10,5" Margin="5"/>
+            <Button Content="Length of Words" Click="BtnLengthOfWords_Click" Padding="10,5" Margin="5"/>
+            <Button Content="Is Proper Sentence" Click="BtnIsProperSentence_Click" Padding="10,5" Margin="5"/>
+        </WrapPanel>
+
+        <TextBlock Grid.Row="3" Text="Result:" FontWeight="Bold" Margin="0,0,0,5" />
+        <!-- Read-only text box for output -->
+        <TextBox x:Name="OutputTextBox" Grid.Row="4" IsReadOnly="True" TextWrapping="Wrap" Background="#F0F0F0" VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</Window>
