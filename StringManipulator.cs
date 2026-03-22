@@ -25,7 +25,19 @@ public class StringManipulator
             return new string(chars);
         }
 
+        static private string RemoveVowels(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
 
+            var chars = input
+                .Where(c => c != ' ' && !"aeiouAEIOU".Contains(c))
+                .ToArray();
+
+            var result = string.Join(" ", chars);
+
+            return result;
+        }
 
     }
 }
