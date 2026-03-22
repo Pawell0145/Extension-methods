@@ -48,5 +48,13 @@ public class StringManipulator
 
             return result;
         }
+
+        private bool IsProperSentence(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return false;
+
+            return char.IsUpper(input[0]) && input.EndsWith(".");
+        }
     }
 }
