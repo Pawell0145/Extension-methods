@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Linq;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
 public class StringManipulator
 {
 	public StringManipulator()
@@ -25,7 +23,7 @@ public class StringManipulator
             return new string(chars);
         }
 
-        static private string RemoveVowels(string input)
+        private string RemoveVowels(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;
@@ -38,6 +36,17 @@ public class StringManipulator
 
             return result;
         }
+        
+        private string LengthOfWords(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
 
+            var words = input.Split(' ');
+            var lengths = words.Select(w => w.Length);
+            var result = string.Join(" ", lengths);
+
+            return result;
+        }
     }
 }
