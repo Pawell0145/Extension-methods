@@ -1,60 +1,57 @@
 ﻿using System;
 using System.Linq;
 
-public class StringManipulator
+public static class StringManipulator
 {
-    public StringManipulator()
-    { }
-        public string CapitalizeLetter(string input)
+    public static string CapitalizeLetter(this string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        char[] chars = input.ToCharArray();
+
+        for (int i = 0; i < chars.Length; i++)
         {
-            if (string.IsNullOrEmpty(input))
-                return input;
-
-            char[] chars = input.ToCharArray();
-
-            for (int i = 0; i < chars.Length; i++)
-            {
-                if (i % 2 == 0)
-                    chars[i] = char.ToUpper(chars[i]);
-                else
-                    chars[i] = char.ToLower(chars[i]);
-            }
-
-            return new string(chars);
+            if (i % 2 == 0)
+                chars[i] = char.ToUpper(chars[i]);
+            else
+                chars[i] = char.ToLower(chars[i]);
         }
 
-        public string RemoveVowels(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
+        return new string(chars);
+    }
 
-            var chars = input
-                .Where(c => c != ' ' && !"aeiouAEIOU.".Contains(c))
-                .ToArray();
+    public static string RemoveVowels(this string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
 
-            var result = string.Join(" ", chars);
+        var chars = input
+            .Where(c => c != ' ' && !"aeiouAEIOU.".Contains(c))
+            .ToArray();
 
-            return result;
-        }
+        string result = string.Join(" ", chars);
 
-        public string LengthOfWords(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
+        return result;
+    }
 
-            var words = input.Split(' ');
-            var lengths = words.Select(w => w.Length);
-            var result = string.Join(" ", lengths);
+    public static string LengthOfWords(this string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
 
-            return result;
-        }
+        string[] words = input.Split(' ');
+        var lengths = words.Select(w => w.Length);
+        string result = string.Join(" ", lengths);
 
-        public bool IsProperSentence(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return false;
+        return result;
+    }
 
-            return char.IsUpper(input[0]) && input.EndsWith(".");
-        }
-    
+    public static bool IsProperSentence(this string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return false;
+
+        return char.IsUpper(input[0]) && input.EndsWith(".");
+    }
 }
